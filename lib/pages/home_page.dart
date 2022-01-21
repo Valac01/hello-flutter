@@ -12,9 +12,7 @@ class HomePage extends StatelessWidget {
         title: Text("Flutter"),
       ),
       body: Center(
-        child: Container(
-          child: Text("Hello Flutter, day $days"),
-        ),
+        child: Image.asset("assets/images/home.png"),
       ),
       drawer: Drawer(),
     );
