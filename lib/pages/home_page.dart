@@ -5,8 +5,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int days = 2;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Flutter"),
