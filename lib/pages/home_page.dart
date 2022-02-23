@@ -8,7 +8,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter"),
+        title: Text(
+          "Catalog App",
+        ),
       ),
       body: Center(
         child: Image.asset("assets/images/home.png"),
