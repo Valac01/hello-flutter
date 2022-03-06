@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hello_flutter/models/catalog.dart';
+import 'package:hello_flutter/utils/routes.dart';
 import 'package:hello_flutter/widgets/catalog.dart';
 import 'package:hello_flutter/widgets/theme.dart';
 
@@ -36,6 +37,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyTheme.creamColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, MyRoutes.cartRoute);
+        },
+        child: Icon(Icons.shopping_cart),
+        backgroundColor: MyTheme.darkBluishColor,
+      ),
       body: SafeArea(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -48,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         else
           Center(
             child: CircularProgressIndicator(),
-          )
+          ),
       ])),
     );
   }

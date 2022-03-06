@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_flutter/models/catalog.dart';
+import 'package:hello_flutter/pages/CatalogDetailPage.dart';
 import 'package:hello_flutter/widgets/theme.dart';
 
 class CatalogList extends StatelessWidget {
@@ -12,7 +13,13 @@ class CatalogList extends StatelessWidget {
         itemCount: CatalogModel.items!.length,
         itemBuilder: (context, index) {
           final catalog = CatalogModel.items![index];
-          return CatalogItem(catalog: catalog);
+          return InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return CatalogDetailPage(catalog: catalog);
+                }));
+              },
+              child: CatalogItem(catalog: catalog));
         });
   }
 }
@@ -46,7 +53,9 @@ class CatalogImage extends StatelessWidget {
       margin: EdgeInsets.all(12.0),
       decoration: BoxDecoration(
           color: MyTheme.creamColor, borderRadius: BorderRadius.circular(8)),
-      child: Image.network(image, fit: BoxFit.contain),
+      child: Hero(
+          tag: Key(image.toString()),
+          child: Image.network(image, fit: BoxFit.contain)),
     );
   }
 }
