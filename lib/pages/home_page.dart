@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hello_flutter/models/catalog.dart';
-import 'package:hello_flutter/widgets/drawer.dart';
-import 'package:hello_flutter/widgets/item_widget.dart';
+import 'package:hello_flutter/widgets/catalog.dart';
+import 'package:hello_flutter/widgets/theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -35,22 +35,51 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Catalog App",
+      backgroundColor: MyTheme.creamColor,
+      body: SafeArea(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: CatalogHeader(),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: (CatalogModel.items != null)
-            ? ListView.builder(
-                itemCount: CatalogModel.items!.length,
-                itemBuilder: (context, index) {
-                  return ItemWidget(item: CatalogModel.items![index]);
-                })
-            : Center(child: CircularProgressIndicator()),
-      ),
-      drawer: Mydrawer(),
+        if (CatalogModel.items != null && CatalogModel.items!.isNotEmpty)
+          Expanded(child: CatalogList())
+        else
+          Center(
+            child: CircularProgressIndicator(),
+          )
+      ])),
+    );
+  }
+}
+
+class CatalogHeader extends StatelessWidget {
+  const CatalogHeader({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Catalog App",
+          style: TextStyle(
+              fontSize: 38,
+              fontWeight: FontWeight.bold,
+              color: MyTheme.darkBluishColor),
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        Text(
+          "Trending Products",
+          style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: MyTheme.darkBluishColor),
+        ),
+      ],
     );
   }
 }
